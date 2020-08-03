@@ -1,4 +1,5 @@
 import time
+from bst import BSTNode
 
 start_time = time.time()
 
@@ -21,8 +22,46 @@ for name_1 in names_1:
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 print (f"runtime: {end_time - start_time} seconds")
+print ("Nested Nasty")
+
+# BST
+start_time = time.time()
+
+tree = BSTNode(names_1[0])
+for name in names_1:
+    tree.insert(name)
+
+duplicates = [name for name in names_2 if tree.contains(name)]
+
+end_time = time.time()
+print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
+print (f"runtime: {end_time - start_time} seconds")
+print ("Binary Search Tree")
+
 
 # ---------- Stretch Goal -----------
 # Python has built-in tools that allow for a very efficient approach to this problem
 # What's the best time you can accomplish?  Thare are no restrictions on techniques or data
 # structures, but you may not import any additional libraries that you did not write yourself.
+
+# For loop comprehension
+
+start_time = time.time()
+
+duplicates = [name for name in names_1 if name in names_2]
+
+end_time = time.time()
+print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
+print (f"runtime: {end_time - start_time} seconds!")
+print ("For Loop Comprehension")
+
+# USING SETS
+
+start_time = time.time()
+
+duplicates = set(names_1) & set(names_2)
+
+end_time = time.time()
+print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
+print (f"runtime: {end_time - start_time} seconds")
+print ("Set")
